@@ -1,5 +1,6 @@
 package ProyectosdeClase;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -115,17 +116,29 @@ public class VectoresMet {
         }
     }
 
-    public static void VectorInvertido(int[] vector) {
-        int start = 0;
-        int end = vector.length - 1;
-        while (start < end) {
-            // Intercambiar los elementos
-            int temp = vector[start];
-            vector[start] = vector[end];
-            vector[end] = temp;
-            start++;
-            end--;
-
+    public static int[] MultiplicarVectorPorCeroPuntoCinco(int[] vector) {
+        int[] nuevoVector = new int[vector.length];
+        for (int i = 0; i < vector.length; i++) {
+            nuevoVector[i] = (int) (vector[i] * 0.5);
         }
+        return nuevoVector;
     }
+
+    public static int contarRepeticiones(int[] vector, int X) {
+        int contador = 0;
+        for (int num : vector) {
+            if (num == X) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+
+    public static void mostrarConjunto(ArrayList<Integer> conjunto) {
+        for (int num : conjunto) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
 }
