@@ -141,4 +141,17 @@ public class VectoresMet {
         System.out.println();
     }
 
+     public static void OrdenarMenorAMayor(int[] vector) {
+        int temp;
+        for (int a = 0; a < vector.length; a++) {
+            for (int primero = 0; primero < vector.length - a - 1; primero++) {
+                if (vector[primero] > vector[primero + 1]) {
+                    // Intercambiar elementos
+                    temp = vector[primero];
+                    vector[primero] = vector[primero + 1];
+                    vector[primero + 1] = temp;
+                }
+            }
+        }
+    }
 }
