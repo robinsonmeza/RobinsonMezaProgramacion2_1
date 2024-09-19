@@ -142,14 +142,26 @@ public class VectoresMet {
     }
 
      public static void OrdenarMenorAMayor(int[] vector) {
-        int temp;
+        int aux;
         for (int a = 0; a < vector.length; a++) {
-            for (int primero = 0; primero < vector.length - a - 1; primero++) {
-                if (vector[primero] > vector[primero + 1]) {
-                    // Intercambiar elementos
-                    temp = vector[primero];
-                    vector[primero] = vector[primero + 1];
-                    vector[primero + 1] = temp;
+            for (int i = 0; i < vector.length - a - 1; i++) {
+                if (vector[i] > vector[i + 1]) {
+                    aux = vector[i];
+                    vector[i] = vector[i + 1];
+                    vector[i + 1] = aux;
+                }
+            }
+        }
+    }
+    
+    public static void OrdenarMayorAMenor(int[] vector) {
+        int aux;
+        for (int a = 0; a < vector.length; a++) {
+            for (int i = 0; i < vector.length - a - 1; i++) {
+                if (vector[i] < vector[i + 1]) {
+                    aux = vector[i];
+                    vector[i] = vector[i + 1];
+                    vector[i + 1] = aux;
                 }
             }
         }
