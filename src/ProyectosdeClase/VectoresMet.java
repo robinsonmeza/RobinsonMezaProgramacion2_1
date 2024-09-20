@@ -33,13 +33,13 @@ public class VectoresMet {
         }
     }
 
-    // llenar el vector aleatoriamente en forma ascendente
+    
     public static void llenarVectorAleatorioAscendente(int[] vector, int A, int B) {
         llenarVectorAleatorio(vector, A, B);
         Arrays.sort(vector);
     }
 
-    // Mostrar el vector
+   
     public static void mostrarVector(int[] vector) {
         for (int num : vector) {
             System.out.print("[]" + num + "\n");
@@ -47,14 +47,14 @@ public class VectoresMet {
         System.out.println();
     }
 
-    // Mostrar el vector en forma descendente
+  
     public static void mostrarVectorDescendente(int[] vector) {
         for (int i = vector.length - 1; i >= 0; i--) {
             System.out.print(vector[i] + " ");
         }
         System.out.println();
     }
-    // imprime aleatoreamente y solo muestra pares
+  
 
     public static void mostrarVectorPar(int[] vector) {
         for (int num : vector) {
@@ -141,29 +141,59 @@ public class VectoresMet {
         System.out.println();
     }
 
-     public static void OrdenarMenorAMayor(int[] vector) {
-        int aux;
+    public static void OrdenarMenorAMayor(int[] vector) {
+        int temp;
         for (int a = 0; a < vector.length; a++) {
-            for (int i = 0; i < vector.length - a - 1; i++) {
-                if (vector[i] > vector[i + 1]) {
-                    aux = vector[i];
-                    vector[i] = vector[i + 1];
-                    vector[i + 1] = aux;
+            for (int primero = 0; primero < vector.length - a - 1; primero++) {
+                if (vector[primero] > vector[primero + 1]) {
+                    // Intercambiar elementos
+                    temp = vector[primero];
+                    vector[primero] = vector[primero + 1];
+                    vector[primero + 1] = temp;
                 }
             }
         }
     }
-    
-    public static void OrdenarMayorAMenor(int[] vector) {
-        int aux;
-        for (int a = 0; a < vector.length; a++) {
-            for (int i = 0; i < vector.length - a - 1; i++) {
-                if (vector[i] < vector[i + 1]) {
-                    aux = vector[i];
-                    vector[i] = vector[i + 1];
-                    vector[i + 1] = aux;
-                }
+
+    public static void MostrarVentasMensuales(int[] ventas, String[] meses) {
+        System.out.println("Ventas mensuales:");
+        for (int i = 0; i < ventas.length; i++) {
+            System.out.println(meses[i] + ": " + ventas[i]);
+        }
+    }
+
+    public static String ObtenerMesVentasMaximas(int[] ventas, String[] meses) {
+        int MesMaxVentas = EncontrarMesMaxVentas(ventas);
+        return meses[MesMaxVentas];
+    }
+
+    public static int ObtenerVentasMaximas(int[] ventas) {
+        int MesMaxVentas = EncontrarMesMaxVentas(ventas);
+        return ventas[MesMaxVentas];
+    }
+
+    public static int CalcularTotalVentas(int[] ventas) {
+        int TotalVentas = 0;
+        for (int venta : ventas) {
+            TotalVentas += venta;
+        }
+        return  TotalVentas;
+    }
+
+    public static double CalcularPromedioVentas(int[] ventas) {
+        int TotalVentas = CalcularTotalVentas(ventas);
+        return (double) TotalVentas / ventas.length;
+    }
+
+    private static int EncontrarMesMaxVentas(int[] ventas) {
+        int MaxVentas = ventas[0];
+        int MesMaxVentas = 0;
+        for (int i = 1; i < ventas.length; i++) {
+            if (ventas[i] > MaxVentas) {
+                MaxVentas = ventas[i];
+                MesMaxVentas = i;
             }
         }
+        return MesMaxVentas;
     }
 }
