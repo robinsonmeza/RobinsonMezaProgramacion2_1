@@ -331,16 +331,17 @@ public class RecorridosMatriz extends javax.swing.JFrame {
             return;
         }
 
-        // Generar la matriz y mostrarla en el JTextArea
-        StringBuilder matriz = new StringBuilder();
+        // Genera la matriz y almacénala en matrizActual
+        matrizActual = new int[numFilas][numColumnas];
+
+        // Llena la matriz con números aleatorios
+        StringBuilder matrizTexto = new StringBuilder();
         for (int i = 0; i < numFilas; i++) {
             for (int j = 0; j < numColumnas; j++) {
-                matriz.append((int) (Math.random() * 10)).append(" ");
+                matrizActual[i][j] = (int) (Math.random() * 10); // Números aleatorios
+                matrizTexto.append(matrizActual[i][j]).append(" ");
             }
-            matriz.append("\n");
-        }
-        CampoMatriz.setText(matriz.toString());
-        matrizActual = generarMatrizAleatoria(numFilas, numColumnas);
+            matrizTexto.append("\n");
 
 
     }//GEN-LAST:event_GenerarActionPerformed
@@ -640,22 +641,31 @@ public class RecorridosMatriz extends javax.swing.JFrame {
 
     private void imprimirMatrizZigzagHorizontal(JTextField recorrido) {
         StringBuilder sb = new StringBuilder();
-        boolean izquierdaDerecha = true;
+        boolean izquierdaADerecha = true;
 
-        for (int i = 0; i < matrizActual.length; i++) {
-            if (izquierdaDerecha) {
-                for (int j = 0; j < matrizActual[0].length; j++) {
-                    sb.append(matrizActual[i][j]).append(",");
-                }
-            } else {
-                for (int j = matrizActual[0].length - 1; j >= 0; j--) {
-                    sb.append(matrizActual[i][j]).append(",");
-                }
-            }
-            izquierdaDerecha = !izquierdaDerecha;
+        // Asegúrate de que matrizActual contiene la matriz generada
+        if (matrizActual == null) {
+            recorrido.setText("Error: la matriz no está inicializada.");
+            return;
         }
 
-        // Eliminar la última coma
+        // Recorre la matriz
+        for (int i = 0; i < matrizActual.length; i++) {
+            if (izquierdaADerecha) {
+                // Recorre de izquierda a derecha
+                for (int j = 0; j < matrizActual[i].length; j++) {
+                    sb.append(matrizActual[i][j]).append(" ");
+                }
+            } else {
+                // Recorre de derecha a izquierda
+                for (int j = matrizActual[i].length - 1; j >= 0; j--) {
+                    sb.append(matrizActual[i][j]).append(" ");
+                }
+            }
+            izquierdaADerecha = !izquierdaADerecha; // Cambia la dirección para la siguiente fila
+        }
+
+        // Eliminar el último espacio extra
         if (sb.length() > 0) {
             sb.deleteCharAt(sb.length() - 1);
         }
